@@ -1,0 +1,68 @@
+.digital-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.time {
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.date {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.analogic-clock {
+  border-radius: 50%;
+  box-shadow: -4px -4px 10px #43434380, inset 4px 4px 10px #00000080,
+    inset -4px -4px 10px #43434380, 4px 4px 10px #0000004d;
+  height: 300px;
+  width: 300px;
+  outline: 7px solid #282828;
+  padding: 0.8rem;
+  position: relative;
+}
+
+.outer-clock-face {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #282828;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.marking,
+.outer-clock-face::after,
+.outer-clock-face::before {
+  background-color: #fff;
+  position: absolute;
+  content: '';
+  width: 5px;
+  height: 100%;
+  left: 49%;
+  z-index: 0;
+}
+
+.marking {
+  background-color: #bdbdcb;
+  width: 3px;
+}
+
+.marking-one {
+  transform: rotate(30deg);
+}
+
+.marking-two {
+  transform: rotate(60deg);
+}
+.marking-three {
+  transform: rotate(90deg);
+}
+.marking-four {
+  transform: rotate(120deg);
+}
