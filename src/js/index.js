@@ -7,16 +7,12 @@ const dayOfWeekElement = document.getElementById('day-of-week');
 const dayElement = document.getElementById('day');
 const monthElement = document.getElementById('month');
 const yearElement = document.getElementById('year');
+const hourHandElement = document.getElementById('hour-hand');
+const minuteHandElement = document.getElementById('minute-hand');
+const secondHandElement = document.getElementById('second-hand');
+const rootStyles = document.documentElement.style;
 
-const dayOfWeek = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday'
-];
+const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = [
   'January',
   'February',
@@ -35,8 +31,11 @@ const fixTime = number => (number < 10 ? '0' + number : number);
 
 const updateClock = () => {
   const date = new Date();
-  minutesElement.textContent = date.getSeconds();
-  hoursElement.textContent = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const hours = date.getHours();
+  minutesElement.textContent = minutes;
+  hoursElement.textContent = hours;
   dayOfWeekElement.textContent = dayOfWeek[date.getDate()];
   dayElement.textContent = date.getDay();
   monthElement.textContent = months[date.getMonth()];
@@ -44,6 +43,13 @@ const updateClock = () => {
 
   minutesElement.textContent = fixTime(date.getMinutes());
   hoursElement.textContent = fixTime(date.getHours());
+
+  const minutesDegrees = minutes * 6 + seconds / 10;
+  const hoursDegrees = hours * 6 + seconds / 10;
+
+  rootStyles.setProperty('--seconds-rotate', seconds * 6 + 'deg');
+  rootStyles.setProperty('--minutes-rotate', minutesDegrees + 'deg');
+  rootStyles.setProperty('--hours-rotate', hoursDegrees + 'deg');
 };
 
 updateClock();
